@@ -1,31 +1,15 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "framework": "nextjs",
+  "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "devCommand": "npm run dev",
   "regions": ["hkg1", "sin1"],
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase-url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase-anon-key",
-    "NEXT_PUBLIC_APP_NAME": "AI导航站",
-    "NEXT_PUBLIC_APP_DESCRIPTION": "发现最新最好用的AI工具"
-  },
   "functions": {
-    "app/**/*.tsx": {
-      "runtime": "nodejs18.x"
+    "src/app/**/*.tsx": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
     }
   },
   "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "s-maxage=86400"
-        }
-      ]
-    },
     {
       "source": "/(.*)",
       "headers": [
@@ -44,10 +28,6 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
