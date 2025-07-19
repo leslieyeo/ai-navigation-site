@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
 import ToolCard from '@/components/ToolCard';
 import { getAITools, getCategories } from '@/lib/api';
 import { AITool, Category, SearchParams } from '@/types';
 
-export default function ToolsPage() {
+function ToolsPageContent() {
   const [tools, setTools] = useState<AITool[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -287,5 +287,17 @@ export default function ToolsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ToolsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <ToolsPageContent />
+    </Suspense>
   );
 }
