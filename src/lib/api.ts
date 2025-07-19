@@ -285,7 +285,7 @@ export async function getWebsites(params: SearchParams = {}): Promise<ApiRespons
       .from(TABLES.WEBSITES)
       .select(`
         *,
-        nav_categories!websites_category_id_fkey(
+        nav_categories(
           id,
           name,
           icon,
@@ -348,7 +348,7 @@ export async function getFeaturedWebsites(limit = 8): Promise<Website[]> {
       .from(TABLES.WEBSITES)
       .select(`
         *,
-        nav_categories!websites_category_id_fkey(
+        nav_categories(
           id,
           name,
           icon,
