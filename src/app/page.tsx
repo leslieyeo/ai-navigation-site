@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import SearchSection from '@/components/SearchSection';
 import CategoryCard from '@/components/CategoryCard';
 import ToolCard from '@/components/ToolCard';
-import { getCategories, getAITools } from '@/lib/supabase-test';
+import { getCategories, getFeaturedTools, getCategoryToolCount } from '@/lib/api';
 import { Category, AITool } from '@/types';
 
 export default function Home() {
@@ -18,10 +18,18 @@ export default function Home() {
       try {
         const [categoriesData, toolsData] = await Promise.all([
           getCategories(),
-          getAITools({ limit: 8 })
+          getFeaturedTools(8)
         ]);
         
-        setCategories(categoriesData);
+        // 为每个分类获取工具数量
+        const categoriesWithCounts = await Promise.all(
+          categoriesData.map(async (category) => ({
+            ...category,
+            toolCount: await getCategoryToolCount(category.id)
+          }))
+        );
+        
+        setCategories(categoriesWithCounts);
         setFeaturedTools(toolsData);
       } catch (error) {
         console.error('获取数据失败:', error);
@@ -74,7 +82,7 @@ export default function Home() {
               <CategoryCard
                 key={category.id}
                 category={category}
-                toolCount={Math.floor(Math.random() * 50) + 10} // 临时数据
+                toolCount={(category as any).toolCount || 0}
                 index={index}
               />
             ))}

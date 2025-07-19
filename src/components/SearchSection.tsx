@@ -17,7 +17,10 @@ export default function SearchSection({
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch?.(searchQuery);
+    if (searchQuery.trim()) {
+      // 跳转到工具页面并传递搜索参数
+      window.location.href = `/tools?q=${encodeURIComponent(searchQuery.trim())}`;
+    }
   };
 
   const popularSearches = [
@@ -114,7 +117,7 @@ export default function SearchSection({
                     whileTap={{ scale: 0.95 }}
                     onClick={() => {
                       setSearchQuery(term);
-                      onSearch?.(term);
+                      window.location.href = `/tools?q=${encodeURIComponent(term)}`;
                     }}
                     className="px-4 py-2 bg-white/80 hover:bg-white text-gray-700 rounded-full text-sm font-medium border border-gray-200 hover:border-blue-300 hover:text-blue-600 transition-all duration-300"
                   >
