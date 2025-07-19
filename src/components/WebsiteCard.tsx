@@ -87,7 +87,7 @@ export default function WebsiteCard({ website, index }: WebsiteCardProps) {
         <div className="flex items-center space-x-4">
           {/* 分类名称 */}
           {website.nav_categories?.name && (
-            <span className={`px-2 py-1 rounded-full bg-${website.nav_categories.color || 'gray'}-100 text-${website.nav_categories.color || 'gray'}-600`}>
+            <span className="px-2 py-1 rounded-full bg-gray-100 text-gray-600">
               {website.nav_categories.name}
             </span>
           )}

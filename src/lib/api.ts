@@ -396,9 +396,22 @@ export async function getNavCategoryWebsiteCount(categoryId: string): Promise<nu
 // 增加网站点击量
 export async function incrementWebsiteClicks(websiteId: string): Promise<boolean> {
   try {
+    // 先获取当前点击量
+    const { data: currentData, error: fetchError } = await supabase
+      .from(TABLES.WEBSITES)
+      .select('click_count')
+      .eq('id', websiteId)
+      .single();
+
+    if (fetchError) {
+      console.error('获取当前点击量失败:', fetchError);
+      return false;
+    }
+
+    // 更新点击量
     const { error } = await supabase
       .from(TABLES.WEBSITES)
-      .update({ click_count: supabase.sql`click_count + 1` })
+      .update({ click_count: (currentData?.click_count || 0) + 1 })
       .eq('id', websiteId);
 
     if (error) {
