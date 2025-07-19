@@ -10,10 +10,13 @@
     "type-check": "tsc --noEmit",
     "analyze": "ANALYZE=true npm run build",
     "clean": "rm -rf .next out",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "import-websites": "node scripts/import-csv-data.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.52.0",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.0",
     "framer-motion": "^12.23.6",
     "next": "15.4.2",
     "next-intl": "^4.3.4",

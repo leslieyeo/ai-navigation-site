@@ -18,4 +18,7 @@ export const TABLES = {
   CATEGORIES: 'categories',
   TAGS: 'tags',
   TOOL_TAGS: 'tool_tags',
+  WEBSITES: 'websites',
+  NAV_CATEGORIES: 'nav_categories',
+  WEBSITE_TAGS: 'website_tags',
 } as const;
