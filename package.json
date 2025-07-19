@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "export": "next build && next export",
     "analyze": "ANALYZE=true npm run build",
     "clean": "rm -rf .next out",
     "deploy": "./scripts/deploy.sh"

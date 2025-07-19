@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ai-navigation-site.vercel.app'),
   title: "AI导航站 - 发现最好用的AI工具",
   description: "精心筛选的AI工具集合，提升你的工作效率，释放创造力。包含AI写作、绘画、视频、代码等各类工具。",
   keywords: "AI工具,人工智能,AI导航,ChatGPT,Midjourney,AI写作,AI绘画,机器学习,深度学习",
