@@ -63,6 +63,12 @@ export default function Header() {
             >
               关于
             </Link>
+            <Link 
+              href="/test-data" 
+              className="text-red-600 hover:text-red-700 transition-colors font-medium text-sm"
+            >
+              [测试数据]
+            </Link>
           </nav>
 
           {/* Search Bar */}
