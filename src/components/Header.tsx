@@ -64,10 +64,10 @@ export default function Header() {
               关于
             </Link>
             <Link 
-              href="/test-data" 
-              className="text-red-600 hover:text-red-700 transition-colors font-medium text-sm"
+              href="/websites" 
+              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              [测试数据]
+              网站导航
             </Link>
           </nav>
 
